@@ -7,10 +7,10 @@ A Simple Blog Site developed using Laravel-AngularJS
 
 #### Configure .env File ####
 * rename **.env.example** file to **.env**
-* configure your your mysql credentials
+* configure your **MySQL database** credentials
 
 #### Generate key for the Project ####
-* `php artisan key:generate`
+`php artisan key:generate`
 
 ## Install Database
 The database is located at `resources/docs`
