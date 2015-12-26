@@ -1,8 +1,16 @@
 # BlogNow
 A Simple Blog Site developed using Laravel-AngularJS
 
-## Install Dependencies
-`bower install`
+## Install Dependencies and Configuration
+* `composer install`
+* `bower install`
+
+#### Configure .env File ####
+* rename **.env.example** file to **.env**
+* configure your your mysql credentials
+
+#### Generate key for the Project ####
+* `php artisan key:generate`
 
 ## Install Database
 The database is located at `resources/docs`
