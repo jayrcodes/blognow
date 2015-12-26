@@ -12,7 +12,7 @@ A Simple Blog Site developed using Laravel-AngularJS
 #### Generate key for the Project ####
 `php artisan key:generate`
 
-## Install Database
+## Install Database (SQL File)
 The database is located at `resources/docs`
 
 ## Test run
