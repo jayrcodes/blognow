@@ -2,12 +2,12 @@
 A Simple Blog Site developed using Laravel-AngularJS
 
 ## Install Dependencies
-<addr>bower install</addr>
+**bower install**
 
 ## Install Database
-The database is located at <addr>resources/docs</addr>
+The database is located at **resources/docs**
 
 ## Test run
-<addr>php artisan serve</addr>
+**php artisan serve**
 
 © Jay-r Albano
