@@ -13,7 +13,7 @@ A Simple Blog Site developed using Laravel-AngularJS
 `php artisan key:generate`
 
 ## Install Database (SQL File)
-The database is located at `resources/docs`
+The SQL file is located at `resources/docs`
 
 ## Test run
 `php artisan serve`
