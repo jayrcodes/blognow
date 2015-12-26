@@ -1,0 +1,35 @@
+#main-content {
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+#top-nav {
+}
+
+#message-list {
+  margin-top: 2rem;
+}
+
+@media (min-width: 762px) {
+  #main-content {
+    width: 70rem;
+  }
+}
+
+#post-message {
+  padding: 2rem;
+}
+
+.panel-heading {
+  display: flex;
+}
+
+.post-id {
+  flex: 1;
+}
+
+.post-date {
+  text-align: right;
+  flex: 1;
+}
