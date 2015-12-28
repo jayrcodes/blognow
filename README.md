@@ -11,9 +11,10 @@ A Simple Blog Site developed using Laravel-AngularJS
 
 #### Generate key for the Project ####
 `php artisan key:generate`
+`php artisan migrate`
 
 ## Install Database (SQL File)
-The SQL file is located at `resources/docs`
+The SQL dump file is located at `resources/docs`
 
 ## Test run
 `php artisan serve`
@@ -25,4 +26,4 @@ The SQL file is located at `resources/docs`
 * Angular-resource (ngResource)
 * Bootstrap 3.3.6
 
-**© Jay-r Albano**
+
