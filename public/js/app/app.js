@@ -5,7 +5,8 @@
   angular
     .module('blogApp', [
       'ngResource',
-      'ui.bootstrap'
+      'ngMaterial',
+      'ngAnimate'
     ]);
   
 })();

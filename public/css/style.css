@@ -1,21 +1,27 @@
+html, body {
+  background-color: #D2D2D2;
+}
+
 #main-content {
   margin: 0 auto;
-  margin-top: 2rem;
-  padding: 2rem;
 }
 
 #top-nav {
 }
 
 #message-list {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
-@media (min-width: 762px) {
+@media (min-width: 800px) {
   #main-content {
-    width: 70rem;
+    width: 800px;
   }
-}
+
+  .md-dialog-content {
+    width: 700px;
+  }
+} 
 
 #post-message {
   padding: 2rem;

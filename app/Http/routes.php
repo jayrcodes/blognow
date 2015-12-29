@@ -22,17 +22,17 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
 Route::get('/', 'HomeController@index');
 
-
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+  Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+  Route::get('/home', 'HomeController@index');
+  Route::resource('/api/post', 'PostController');
+  Route::get('/modals/showEditDialog', 'PostController@showEditDialog');
+
+  Route::get('/api/loggedUser', 'PostController@loggedUser');
 });
 
-Route::resource('/api/post', 'PostController');
+
+

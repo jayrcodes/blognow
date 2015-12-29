@@ -8,111 +8,47 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\User;
+use App\Jobs\StorePost;
+use App\Jobs\UpdatePost;
 
-class PostController extends Controller
-{   
+use Auth;
+use Validator;
+
+class PostController extends Controller {   
+
+    public function loggedUser() {
+        return Auth::user();
+    } 
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $posts = Post::all();
-        return $posts;
+    public function index() {
+        return Post::with('user')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request) {
+        $validator = Validator::make($request->all(), Post::$rules);
+        if ($validator->fails()) {
+            $result['message'] = $validator->errors()->all();
+            return json_encode($result);
+        }       
+        $this->dispatch(new StorePost(Auth::user()->id, $request->title, $request->message));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $post = new Post;
-        $post->user_id = $request->user_id;
-        $post->message = $request->message;
-        $post->save();
+    public function show($id) {   
+        return Post::findOrFail($id);        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {   
-        $result['status'] = 404;
-        $result['message'] = 'Post not found.';
-
-        if (!Post::find($id)) return $result;
-
-        return Post::find($id);   
+    public function update(Request $request, $id) {
+    	$post = Post::findOrFail($id);
+    	$this->dispatch(new UpdatePost($post, Auth::user()->id, $request->title, $request->message));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function destroy($id) {
+    	$post = Post::findOrFail($id);
+        $post = Post::destroy($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        if (Post::find($id)) {
-            $post = Post::find($id);
-        
-            if ($request->user_id)
-                $post->user_id = $request->user_id;
-            
-            if ($request->message)
-                $post->message = $request->message;
-            
-            $post->save();
-
-            $result['message'] = 'Post successfully updated.';
-
-            return $result;
-        }
+    public function showEditDialog() {
+        return view('modals.showEditDialog');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        if (Post::find($id)) {
-            $post = Post::destroy($id);
-
-            $result['message'] = 'Post successfully deleted.';
-            return $result;
-        }
-    }
 }
